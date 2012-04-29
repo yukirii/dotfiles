@@ -1,0 +1,104 @@
+#=====================
+# ~/.zshrc
+#=====================
+
+#=====================
+# PATH
+#=====================
+PATH=$(brew --prefix)/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/Cellar/ruby/1.9.2-p290/bin:$PATH
+MANPATH=/opt/local/man:$MANPATH
+
+#=====================
+# LANG
+#=====================
+export LANG=ja_JP.UTF-8
+
+#=====================
+# alias
+#=====================
+alias ls='ls -GF'
+alias ll='ls -l'
+alias la='ls -A'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias cl='clear'
+alias vi='vim'
+alias firefox="open -a Firefox"
+#alias gcc="gcc -g -O0 -o"
+
+#=====================
+# setopt
+#=====================
+setopt auto_pushd			# 移動履歴を利用する
+setopt auto_cd				# ディレクトリ名で移動
+setopt pushd_ignore_dups	# auto_pushdで重複するディレクトリは記録しない
+setopt correct				# コマンドのtypoを推測する
+setopt nolistbeep			# 補完時にビープ音を鳴らさない
+
+#=====================
+# Completion configuration
+#=====================
+fpath=(~/.zsh/functions/Completion ${fpath})
+autoload -U compinit		# コマンド補完を有効化
+compinit
+
+#=====================
+# command history
+#=====================
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt hist_ignore_dups		# コマンドが重複して記録されるのを防ぐ
+setopt share_history		# 履歴を共有する
+setopt append_history		# 複数の zsh を同時使用する時などに history ファイルに上書きせず追加
+
+#=====================
+# prompt
+#=====================
+autoload colors
+colors
+case ${UID} in
+0)
+    #PROMPT="%B%{${fg[red]}%}%n@%m%{${reset_color}%}%b "
+    PROMPT="%B%{${fg[red]}%}%n%#%{${reset_color}%}%b "
+	RPROMPT="[%~]"
+	SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+	[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+        PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+    ;;
+*)
+    #PROMPT="%{${fg[red]}%}%n@%m%{${reset_color}%} "
+	PROMPT="%{${fg[red]}%}%n%#%{${reset_color}%} "
+	RPROMPT="[%~]"
+	SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+        PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+    ;;
+esac
+
+#=====================
+# function
+#=====================
+#google検索
+function google() {
+	local str opt
+	if [ $# != 0 ]; then
+		for i in $*; do
+			str="$str+$i"
+		done
+		str=`echo $str | sed 's/^\+//'`
+		opt='search?num=50&hl=ja&lr=lang_ja'
+		opt="${opt}&q=${str}"
+	fi
+	firefox http://www.google.co.jp/$opt
+}
+
+case "${TERM}" in screen)
+    preexec() {
+	        echo -ne "\ek#${1%% *}\e\\"
+			    }
+				    precmd() {
+					        echo -ne "\ek$(basename $(pwd))\e\\"
+							    }
+								esac
