@@ -5,7 +5,7 @@
 #=====================
 # PATH
 #=====================
-PATH=$(brew --prefix)/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/Cellar/ruby/1.9.2-p290/bin:$PATH
+PATH=$(brew --prefix)/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
 MANPATH=/opt/local/man:$MANPATH
 
 #=====================
@@ -16,6 +16,7 @@ export LANG=ja_JP.UTF-8
 #=====================
 # alias
 #=====================
+# Shortcut
 alias ls='ls -GF'
 alias ll='ls -l'
 alias la='ls -A'
@@ -24,17 +25,28 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias cl='clear'
 alias vi='vim'
-alias firefox="open -a Firefox"
-#alias gcc="gcc -g -O0 -o"
+alias v='vim'
+alias tree='tree -N'
+alias up='cd ..'
+alias upup='cd ../..'
+alias upupup='cd ../../..'
+
+# Application Shortcuts
+alias firefox='open -a Firefox'
+alias safari='open -a safari'
+alias chrome='open -a /Applications/Google\ Chrome.app'
+alias cot='open -a CotEditor'
 
 #=====================
 # setopt
 #=====================
-setopt auto_pushd			# 移動履歴を利用する
-setopt auto_cd				# ディレクトリ名で移動
+setopt auto_pushd					# 移動履歴を利用する
+setopt auto_cd						# ディレクトリ名で移動
 setopt pushd_ignore_dups	# auto_pushdで重複するディレクトリは記録しない
-setopt correct				# コマンドのtypoを推測する
-setopt nolistbeep			# 補完時にビープ音を鳴らさない
+setopt correct						# コマンドのtypoを推測する
+setopt nolistbeep					# 補完時にビープ音を鳴らさない
+setopt TRANSIENT_RPROMPT	# 右プロンプトに入力がきたら消す
+setopt prompt_subst				# プロンプト文字列で各種展開を行う
 
 #=====================
 # Completion configuration
@@ -46,41 +58,41 @@ compinit
 #=====================
 # command history
 #=====================
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 setopt hist_ignore_dups		# コマンドが重複して記録されるのを防ぐ
-setopt share_history		# 履歴を共有する
-setopt append_history		# 複数の zsh を同時使用する時などに history ファイルに上書きせず追加
+setopt share_history			# 履歴を共有する
+setopt append_history			# 複数の zsh を同時使用する時などに history ファイルに上書きせず追加
 
 #=====================
 # prompt
 #=====================
-autoload colors
-colors
-case ${UID} in
-0)
-    #PROMPT="%B%{${fg[red]}%}%n@%m%{${reset_color}%}%b "
-    PROMPT="%B%{${fg[red]}%}%n%#%{${reset_color}%}%b "
-	RPROMPT="[%~]"
-	SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-	[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
-    ;;
-*)
-    #PROMPT="%{${fg[red]}%}%n@%m%{${reset_color}%} "
-	PROMPT="%{${fg[red]}%}%n%#%{${reset_color}%} "
-	RPROMPT="[%~]"
-	SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
-    ;;
-esac
+autoload -U colors ; colors
+# 灰30 赤31 緑32 黄33 青34 紫35 水36 白37
+# スーパーユーザーのプロンプトは赤にする
+if [ $UID = 0 ] ; then
+	PSCOLOR='01;04;31'			# 太字;下線;赤
+	USERNAME=root
+else
+	#PSCOLOR='00;04;34'			# 細字;下線;青
+	PSCOLOR='00;35'					# 細字;紫
+	USERNAME=%(!..%n)
+fi
+
+# 右プロンプトに.gitがあれば現在のブランチを表示するようにした
+RPROMPT='[`rprompt-git-current-branch`%~]'
+
+# %# %記号 %m マシン名 %n ユーザ名
+PROMPT=$'%{\e[${PSCOLOR}m%}${USERNAME}%# %{\e[m%}'
+
+# 入力ミス時
+SPROMPT=$'%{\e[${PSCOLOR}m%}%r is correct?[n,y,a,e]:%{${reset_color}%} '
 
 #=====================
 # function
 #=====================
-#google検索
+# google検索
 function google() {
 	local str opt
 	if [ $# != 0 ]; then
@@ -94,11 +106,52 @@ function google() {
 	firefox http://www.google.co.jp/$opt
 }
 
+# for GNU screen
+# ssh
+function ssh_screen(){
+	eval server=\${$#}
+	screen -t $server ssh "$@"
+}
+if [ x$TERM = xscreen ]; then
+	alias ssh=ssh_screen
+fi
+
 case "${TERM}" in screen)
     preexec() {
-	        echo -ne "\ek#${1%% *}\e\\"
-			    }
-				    precmd() {
-					        echo -ne "\ek$(basename $(pwd))\e\\"
-							    }
-								esac
+		echo -ne "\ek${1%% *}\e\\"
+	}
+	precmd() {
+		#echo -ne "\ek$(basename $(pwd))\e\\"
+		echo -ne "\ek$(basename $SHELL)\e\\"
+	}
+esac
+
+# for git
+# Show branch name in right prompt
+function rprompt-git-current-branch {
+	local name st color
+	
+	if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+		return
+	fi
+	name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+	if [[ -z $name ]]; then
+		return
+	fi
+	
+	st=`git status 2> /dev/null`
+	if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+		color=${fg[green]}
+	elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+		color=${fg[yellow]}
+	elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
+		color=${fg_bold[red]}
+	else
+		color=${fg[red]}
+	fi
+	
+	# %{...%} は囲まれた文字列がエスケープシーケンスであることを明示する
+	# これをしないと右プロンプトの位置がずれる
+	
+	echo "%{$color%}($name)%{$reset_color%} "
+}

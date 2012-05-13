@@ -1,6 +1,7 @@
 " ~/.vimrc
 " ------------------------------
 set encoding=utf-8
+set fileencoding=utf-8
 set fileencodings=euc-jp,sjis,utf-8
 
 set nocompatible	
@@ -29,7 +30,7 @@ autocmd FileType *
 \ | endif
 set autoindent
 set shiftwidth=4
-set tabstop=4
+set tabstop=2
 
 set incsearch			" インクリメンタル検索を有効化
 
