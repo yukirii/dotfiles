@@ -87,7 +87,7 @@ RPROMPT='[`rprompt-git-current-branch`%~]'
 PROMPT=$'%{\e[${PSCOLOR}m%}${USERNAME}%# %{\e[m%}'
 
 # 入力ミス時
-SPROMPT=$'%{\e[${PSCOLOR}m%}%r is correct?[n,y,a,e]:%{${reset_color}%} '
+SPROMPT=$'%{\e[${PSCOLOR}m%}%r is correct? [n,y,a,e]:%{${reset_color}%} '
 
 #=====================
 # function
