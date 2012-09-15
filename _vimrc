@@ -2,18 +2,19 @@
 " ------------------------------
 set encoding=utf-8
 set fileencoding=utf-8
-"set fileencodings=euc-jp,sjis,utf-8
 
-set nocompatible	
+set nocompatible
 
 " dysplay
 " ------------------------------
-set number	
+set number
 set ruler
 set wildmenu
+set list
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
 " ステータスラインを表示
-set laststatus=2		" ステータスラインを常に表示
+set laststatus=2        " ステータスラインを常に表示
 set statusline=%F%r%h%= " ステータスラインの内容
 
 " syntax color
@@ -29,28 +30,14 @@ autocmd FileType *
 \ |   setlocal omnifunc=syntaxcomplete#Complete
 \ | endif
 set autoindent
-set shiftwidth=4
+set expandtab
+set shiftwidth=2
 set tabstop=2
-
-set incsearch			" インクリメンタル検索を有効化
-
+set incsearch     " インクリメンタル検索を有効化
 
 " keymap
 " ------------------------------
 nnoremap <Space>  <C-E>
 nnoremap <S-Space> <C-Y>
-
-" command
 noremap ; :
 noremap : ;
-
-"{$B$,F~NO$5$l$?$H$-$K2~9T(B+$BJD$83g8L$rJd40$9$k(B
-"function GetBraceForC()
-"  let line = strpart(getline('.'), 0, col('.') - 1)
-"    if line =~ ') \=$'
-"	    return "{\n}\<Esc>0bo"
-"	else
-"	    return "{}\<Left>"
-"   endif
-"endfunction
-"au FileType c,cpp,java,javascript inoremap <expr> { GetBraceForC()
