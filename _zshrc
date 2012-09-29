@@ -3,8 +3,9 @@
 
 # PATH
 #=====================
-PATH=$(brew --prefix)/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
+PATH=$HOME/Software/bin:$(brew --prefix)/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
 MANPATH=/opt/local/man:$MANPATH
+[[ -f $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 # LANG
 #=====================
@@ -36,13 +37,18 @@ alias screen='screen'
 
 # setopt
 #=====================
-setopt auto_pushd         # 移動履歴を利用する
-setopt auto_cd            # ディレクトリ名で移動
-setopt pushd_ignore_dups  # auto_pushdで重複するディレクトリは記録しない
-setopt correct            # コマンドのtypoを推測する
-setopt nolistbeep         # 補完時にビープ音を鳴らさない
-setopt TRANSIENT_RPROMPT  # 右プロンプトに入力がきたら消す
-setopt prompt_subst       # プロンプト文字列で各種展開を行う
+setopt auto_pushd
+setopt auto_cd
+setopt pushd_ignore_dups
+setopt correct
+setopt nolistbeep
+setopt transient_rprompt
+setopt prompt_subst
+setopt auto_menu
+setopt list_packed
+setopt list_types
+setopt auto_param_slash
+setopt auto_param_keys
 
 # Completion configuration
 #=====================
@@ -118,4 +124,3 @@ function rprompt-git-current-branch {
   echo "%{$color%}($name)%{$reset_color%} "
 }
 
-[[ -f $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
