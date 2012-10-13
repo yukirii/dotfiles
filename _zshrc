@@ -50,6 +50,10 @@ setopt list_types
 setopt auto_param_slash
 setopt auto_param_keys
 
+# zstyle
+#=====================
+zstyle ':completion:*:default' menu yes select
+
 # Completion configuration
 #=====================
 fpath=(~/.zsh/functions/Completion ${fpath})
