@@ -7,6 +7,11 @@ PATH=$HOME/Software/bin:$(brew --prefix)/bin:/opt/local/bin:/opt/local/sbin:/usr
 MANPATH=/opt/local/man:$MANPATH
 [[ -f $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
+# java
+export JAVA_HOME=/Library/Java/Home
+export CLASSPATH=.:/Users/shiftky/dev/lbread/lucene-index-test/api/juniversalchardet-1.0.3.jar:/Users/shiftky/dev/lbread/lucene-index-test/api/lucene-core-3.6.1.jar:/Users/shiftky/dev/lbread/lucene-index-test/api/lucene-analyzers-3.6.1.jar:/Users/shiftky/dev/lbread/lucene-index-test/api/tika-app-1.2.jar
+export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+
 # LANG
 #=====================
 export LANG=ja_JP.UTF-8
@@ -27,6 +32,7 @@ alias tree='tree -N'
 alias up='cd ..'
 alias upup='cd ../..'
 alias upupup='cd ../../..'
+alias lbread='ssh lbread.org'
 
 # Application Shortcuts
 alias firefox='open -a Firefox'

@@ -21,10 +21,13 @@ set statusline=%F%r%h%= " ステータスラインの内容
 " ------------------------------
 syntax on
 colorscheme mrkn256
+"colorscheme rdark
+"colorscheme molokai
+"colorscheme solarized
 
 " edit
 " ------------------------------
-filetype on
+filetype plugin on
 autocmd FileType *
 \   if &l:omnifunc == ''
 \ |   setlocal omnifunc=syntaxcomplete#Complete
@@ -41,3 +44,11 @@ nnoremap <Space>  <C-E>
 nnoremap <S-Space> <C-Y>
 noremap ; :
 noremap : ;
+
+" cursorline
+" ------------------------------
+augroup vimrc-auto-cursorline
+  autocmd!
+  autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+  autocmd CursorHold,CursorHoldI * setlocal cursorline
+augroup END
