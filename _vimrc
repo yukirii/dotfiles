@@ -20,7 +20,8 @@ set statusline=%F%r%h%= " ステータスラインの内容
 " syntax color
 " ------------------------------
 syntax on
-colorscheme mrkn256
+"colorscheme mrkn256
+"colorscheme jellybeans
 "colorscheme rdark
 "colorscheme molokai
 "colorscheme solarized
@@ -44,11 +45,3 @@ nnoremap <Space>  <C-E>
 nnoremap <S-Space> <C-Y>
 noremap ; :
 noremap : ;
-
-" cursorline
-" ------------------------------
-augroup vimrc-auto-cursorline
-  autocmd!
-  autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
-  autocmd CursorHold,CursorHoldI * setlocal cursorline
-augroup END
