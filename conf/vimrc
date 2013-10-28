@@ -13,9 +13,9 @@ set wildmenu
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
-" ステータスラインを表示
-set laststatus=2        " ステータスラインを常に表示
-set statusline=%F%r%h%= " ステータスラインの内容
+" status line
+set laststatus=2
+set statusline=%F%r%h%=
 
 " syntax color
 " ------------------------------
@@ -37,7 +37,7 @@ set autoindent
 set expandtab
 set shiftwidth=2
 set tabstop=2
-set incsearch     " インクリメンタル検索を有効化
+set incsearch
 
 " keymap
 " ------------------------------
@@ -45,3 +45,6 @@ nnoremap <Space>  <C-E>
 nnoremap <S-Space> <C-Y>
 noremap ; :
 noremap : ;
+
+" wqalias
+command! -nargs=0 Wq wq
