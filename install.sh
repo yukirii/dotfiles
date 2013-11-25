@@ -13,3 +13,4 @@ make_symlink zshrc
 make_symlink tmux.conf
 make_symlink vimrc
 make_symlink vimperatorrc
+make_symlink vrapperrc
