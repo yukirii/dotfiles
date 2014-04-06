@@ -1,9 +1,27 @@
 " ~/.vimrc
 " ------------------------------
 set encoding=utf-8
-set fileencoding=utf-8
-
+set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
 set nocompatible
+
+" neobundle
+" ------------------------------
+filetype off
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'Smooth-Scroll'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'scrooloose/nerdtree'
+  let NERDTreeShowHidden = 1
+autocmd vimenter * if !argc() | NERDTree | endif
+
+NeoBundleCheck
+
+filetype plugin indent on
 
 " dysplay
 " ------------------------------
@@ -20,11 +38,6 @@ set statusline=%F%r%h%=
 " syntax color
 " ------------------------------
 syntax on
-"colorscheme mrkn256
-"colorscheme jellybeans
-"colorscheme rdark
-"colorscheme molokai
-"colorscheme solarized
 
 " edit
 " ------------------------------
@@ -43,6 +56,10 @@ set incsearch
 " ------------------------------
 nnoremap <Space>  <C-E>
 nnoremap <S-Space> <C-Y>
+noremap <C-H> <C-W>h
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-L> <C-W>l
 noremap ; :
 noremap : ;
 
