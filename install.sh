@@ -1,16 +1,27 @@
 #!/bin/zsh
 
 function make_symlink() {
-  if [ -e ~/.dotfiles/conf/$1 ]; then
-    ln -s ~/.dotfiles/conf/$1 ~/.$1
-  fi
+  for file in ~/.dotfiles/conf/* ; do
+    if [ -f $file ]; then
+      ln -s $file ~/.${file##*/}
+    fi
+  done
 }
 
-cp -r ../dotfiles ~/.dotfiles
+function install_powerline() {
+  if [ ! -e ~/.dotfiles/powerline ]; then
+    mkdir ~/.dotfiles/powerline
+  fi
 
-make_symlink pryrc
-make_symlink zshrc
-make_symlink tmux.conf
-make_symlink vimrc
-make_symlink vimperatorrc
-make_symlink vrapperrc
+  if [ ! -e ~/.dotfiles/powerline/tmux-powerline ]; then
+    git clone https://github.com/erikw/tmux-powerline.git ~/.dotfiles/powerline/tmux-powerline
+  fi
+  rm -f ~/.dotfiles/powerline/tmux-powerline/themes/default.sh
+  ln -s ~/.dotfiles/powerline_conf/tmux-powerline/themes/default.sh ~/.dotfiles/powerline/tmux-powerline/themes/default.sh
+}
+
+if [ ! -e ~/.dotfiles ]; then
+  cp -r . ~/.dotfiles
+fi
+make_symlink
+install_powerline
