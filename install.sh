@@ -20,7 +20,7 @@ function install_powerline() {
   ln -s ~/.dotfiles/powerline_conf/tmux-powerline/themes/default.sh ~/.dotfiles/powerline/tmux-powerline/themes/default.sh
 }
 
-if [ !-e ~/.dotfiles ]; then
+if [ ! -e ~/.dotfiles ]; then
   cp -r . ~/.dotfiles
 fi
 make_symlink
