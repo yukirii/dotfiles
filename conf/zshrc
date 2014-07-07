@@ -276,10 +276,9 @@ function tulips() {
       str="$str+$i"
     done
     str=`echo $str | sed 's/^\+//'`
-    opt='ja?target=l&x_radio=on'
-    opt="${opt}&q=${str}&x=0&y=0"
+    opt="search?q=${str}"
   fi
-  firefox http://www.tulips.tsukuba.ac.jp/mytulips/home/result/$opt
+  firefox http://tsukuba.summon.serialssolutions.com/$opt
 }
 
 # 256colors
@@ -289,3 +288,6 @@ function 256colortest() {
         echo -e "\e[38;05;${code}m $code: Test"
     done
 }
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

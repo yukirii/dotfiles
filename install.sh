@@ -9,11 +9,11 @@ function make_symlink() {
 }
 
 function install_powerline() {
-  if [ ! -e ~/.dotfiles/powerline ]; then
+  if [ !-e ~/.dotfiles/powerline ]; then
     mkdir ~/.dotfiles/powerline
   fi
 
-  if [ ! -e ~/.dotfiles/powerline/tmux-powerline ]; then
+  if [ !~e ~/.dotfiles/powerline/tmux-powerline ]; then
     git clone https://github.com/erikw/tmux-powerline.git ~/.dotfiles/powerline/tmux-powerline
   fi
   rm -f ~/.dotfiles/powerline/tmux-powerline/themes/default.sh
