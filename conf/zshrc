@@ -31,6 +31,7 @@ if [ `uname` = 'Darwin' ]; then
   alias chrome='open -a /Applications/Google\ Chrome.app'
   alias cot='open -a CotEditor'
   alias mou='open -a /Applications/Mou.app'
+  alias marked='open -a /Applications/Marked.app'
 fi
 
 # setopt
