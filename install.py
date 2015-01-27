@@ -4,10 +4,23 @@ import sys
 import json
 
 SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
+COLORS = {
+    'red' : '\x1b[31m',
+    'blue' : '\x1b[34m',
+    'yellow' : '\x1b[33m',
+    'green' : '\x1b[32m',
+    'purple' : '\x1b[35m',
+    'clear' : '\x1b[0m'
+}
+
+def colored_print(name, string):
+    if not COLORS.has_key(name) : raise Exception("invalid color name")
+    print COLORS[name] + string + COLORS['clear']
+
 
 def install_dotfiles(dotfiles):
     if dotfiles is None : return
-    print "Install dotfiles"
+    colored_print("green", "Install dotfiles")
 
     for filename in dotfiles :
         conf = os.path.join(SCRIPT_DIR, 'conf', filename)
@@ -15,18 +28,17 @@ def install_dotfiles(dotfiles):
             print "Error: Config file '%s' is not found. (%s)" % (filename, conf)
             quit()
 
-        print "==> install %s" % filename
+        colored_print("yellow", "==> install %s" % filename)
         target = os.path.join(os.getenv('HOME'), '.' + filename)
         if not os.path.exists(target) :
             cmd = 'ln -s %s %s' % (conf, target)
             print cmd
             os.system(cmd)
-    print ""
 
 
 def execute_scripts(scripts):
     if scripts is None : return
-    print "Execute scripts"
+    colored_print("green", "Execute scripts")
 
     for filename in scripts :
         script = os.path.join(SCRIPT_DIR, 'scripts', filename)
@@ -34,9 +46,8 @@ def execute_scripts(scripts):
             print "Error: Script file '%s' is not found. (%s)" % (filename, script)
             quit()
 
-        print "==> execute %s" % filename
+        colored_print("yellow", "==> execute %s" % filename)
         os.system(script)
-    print ""
 
 
 def load_profile(profile):
@@ -51,6 +62,7 @@ def install(profile_name):
     profile = load_profile(profile_name)
     if profile.has_key("dotfiles") :
         install_dotfiles(profile.get("dotfiles"))
+    print ""
     if profile.has_key("scripts") :
         execute_scripts(profile.get("scripts"))
 
@@ -60,6 +72,7 @@ def main():
         print "Usage: %s [PROFILE_NAME]" % sys.argv[0]
         quit()
     install(sys.argv[1])
+
 
 if __name__ == "__main__":
     main()
