@@ -1,0 +1,12 @@
+{
+  "dotfiles": [
+    "zshrc",
+    "vimrc",
+    "pryrc",
+    "tmux.conf",
+  ],
+  "scripts": [
+    "neobundle.sh",
+    "rbenv.sh"
+  ]
+}
