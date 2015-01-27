@@ -5,5 +5,5 @@ shiftky's configuration files
 
 ## How to install
 ```
-./install.sh
+./install.py [PROFILE_NAME]
 ```
