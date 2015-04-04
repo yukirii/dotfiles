@@ -69,7 +69,10 @@ def install(profile_name):
 
 def main():
     if len(sys.argv) != 2 :
-        print "Usage: %s [PROFILE_NAME]" % sys.argv[0]
+        print "Usage: %s [PROFILE_NAME]\n" % sys.argv[0]
+        print "PROFILES :"
+        for profile in os.listdir(os.path.join(SCRIPT_DIR, 'profiles')):
+            print "- %s" % profile.replace('.json', '')
         quit()
     install(sys.argv[1])
 
