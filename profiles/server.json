@@ -3,7 +3,7 @@
     "zshrc",
     "vimrc",
     "pryrc",
-    "tmux.conf",
+    "tmux.conf"
   ],
   "scripts": [
     "neobundle.sh",
