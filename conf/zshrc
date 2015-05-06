@@ -34,6 +34,9 @@ alias upupup='cd ../../..'
 alias :q='exit'
 alias :Q='exit'
 alias be='bundle exec'
+if [ `uname` = 'Darwin' ]; then
+  alias ddprogress='while true; do sudo killall -INFO dd; sleep 2; done'
+fi
 
 # Application Shortcuts
 if [ `uname` = 'Darwin' ]; then
