@@ -8,6 +8,7 @@
   ],
   "scripts": [
     "neobundle.sh",
-    "rbenv.sh"
+    "rbenv.sh",
+    "rsense.sh"
   ]
 }

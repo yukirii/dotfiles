@@ -3,6 +3,7 @@
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
 set nocompatible
+syntax enable
 
 " neobundle
 " ------------------------------
@@ -13,17 +14,44 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
 
-NeoBundle 'Smooth-Scroll'
+NeoBundle 'yonchu/accelerated-smooth-scroll'
+let g:ac_smooth_scroll_du_sleep_time_msec = 5
+let g:ac_smooth_scroll_fb_sleep_time_msec = 5
+
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'scrooloose/nerdtree'
-  let NERDTreeShowHidden = 1
-autocmd vimenter * if !argc() | NERDTree | endif
+NeoBundle 'Shougo/neomru.vim'
+noremap <C-P> :Unite buffer<CR>
+noremap <C-N> :Unite rails/<Tab>
+noremap <C-Z> :Unite file_mru<CR>
+
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'marcus/rsense'
+NeoBundle 'supermomonga/neocomplete-rsense.vim'
+NeoBundle 'basyura/unite-rails'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-endwise'
+
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'kchmck/vim-coffee-script'
+
+call neobundle#end()
 
 NeoBundleCheck
 
-filetype plugin indent on
+" neocomplete.vim
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
+" rsense
+let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec/"
+let g:rsenseUseOmniFunc = 1
+
 
 " dysplay
 " ------------------------------
@@ -32,14 +60,11 @@ set ruler
 set wildmenu
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
-
 " status line
 set laststatus=2
 set statusline=%F%r%h%=
+"set colorcolumn=80
 
-" syntax color
-" ------------------------------
-syntax on
 
 " edit
 " ------------------------------
@@ -53,10 +78,14 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set incsearch
+set backspace=indent,eol,start
+
 
 " keymap
 " ------------------------------
-nnoremap <Space>  <C-E>
+nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <Space> <C-E>
 nnoremap <S-Space> <C-Y>
 noremap <C-H> <C-W>h
 noremap <C-J> <C-W>j
@@ -64,6 +93,7 @@ noremap <C-K> <C-W>k
 noremap <C-L> <C-W>l
 noremap ; :
 noremap : ;
-
-" wqalias
+" wq alias
 command! -nargs=0 Wq wq
+
+filetype plugin indent on
