@@ -271,6 +271,15 @@ add-zsh-hook precmd _update_vcs_info_msg
 
 # function
 #=====================
+# dd cmd progress
+function dd_progress() {
+  if [ `uname` = 'Darwin' ]; then
+    while true; do sudo killall -INFO dd; sleep 2; done
+  else
+    while true; do sudo killall -USR1 dd; sleep 2; done
+  fi
+}
+
 # google search
 function google() {
   local str opt
