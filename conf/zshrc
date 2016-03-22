@@ -10,10 +10,14 @@ if [ -e $HOME/.rbenv ]; then
   export PATH="$HOME/.rbenv/shims:$PATH"
   eval "$(rbenv init -)"
 fi
+if [ `uname` = 'Darwin' ]; then
+  export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+fi
 
 # LANG
 #=====================
-export LANG=ja_JP.UTF-8
+export LANG='ja_JP.UTF-8'
+export LC_ALL='ja_JP.UTF-8'
 
 # alias
 #=====================
