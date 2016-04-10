@@ -9,6 +9,7 @@
   "scripts": [
     "neobundle.sh",
     "rbenv.sh",
-    "rsense.sh"
+    "rsense.sh",
+    "monaco_for_powerline.sh"
   ]
 }
