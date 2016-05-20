@@ -93,7 +93,6 @@ noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-L> <C-W>l
 noremap ; :
-noremap : ;
 " wq alias
 command! -nargs=0 Wq wq
 
