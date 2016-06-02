@@ -48,6 +48,10 @@ if [ `uname` = 'Darwin' ]; then
   alias ddprogress='while true; do sudo killall -INFO dd; sleep 2; done'
   alias libtool='glibtool'
   alias libtoolize='glibtoolize'
+
+  if [ -e `which ggrep` ]; then
+    alias grep='ggrep'
+  fi
 fi
 
 # Application Shortcuts
