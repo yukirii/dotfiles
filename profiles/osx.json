@@ -11,6 +11,7 @@
     "neobundle.sh",
     "rbenv.sh",
     "rsense.sh",
-    "monaco_for_powerline.sh"
+    "monaco_for_powerline.sh",
+    "iterm2-japanesque.sh"
   ]
 }
