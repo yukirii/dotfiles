@@ -6,15 +6,20 @@
 export PATH="/usr/local/bin:/usr/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
+# rbenv
 if [ -e $HOME/.rbenv ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   export PATH="$HOME/.rbenv/shims:$PATH"
   eval "$(rbenv init -)"
 fi
 
+# for OS X
 if [ `uname` = 'Darwin' ]; then
   export PATH="$HOME/Library/Python/2.7/bin:$PATH"
-  eval "$(direnv hook zsh)"
+
+  if hash direnv 2>/dev/null; then
+    eval "$(direnv hook zsh)"
+  fi
 fi
 
 # LANG
@@ -49,18 +54,15 @@ if [ `uname` = 'Darwin' ]; then
   alias libtool='glibtool'
   alias libtoolize='glibtoolize'
 
-  if [ -e `which ggrep` ]; then
+  if hash ggrep 2>/dev/null; then
     alias grep='ggrep'
   fi
-fi
 
-# Application Shortcuts
-if [ `uname` = 'Darwin' ]; then
+  # Application Shortcuts
   alias firefox='open -a Firefox'
   alias safari='open -a safari'
   alias chrome='open -a /Applications/Google\ Chrome.app'
   alias cot='open -a CotEditor'
-  alias mou='open -a /Applications/Mou.app'
   alias marked='open -a /Applications/Marked\ 2.app'
 fi
 
