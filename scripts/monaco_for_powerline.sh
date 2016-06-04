@@ -5,7 +5,7 @@ FILENAME="Monaco for Powerline.otf"
 
 if [ `uname` = 'Darwin' ]; then
   if [ ! -e "/Library/Fonts/$FILENAME" ]; then
-    curl $URL -o "/tmp/$FILENAME"
+    wget $URL -O "/tmp/$FILENAME"
     mv "/tmp/$FILENAME" /Library/Fonts
   fi
 fi
