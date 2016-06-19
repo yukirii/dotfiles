@@ -7,7 +7,7 @@
     "vimperatorrc"
   ],
   "scripts": [
-    "mac_softwares.sh",
+    "homebrew.sh",
     "neobundle.sh",
     "rbenv.sh",
     "rsense.sh",
