@@ -49,10 +49,8 @@ set ruler
 set wildmenu
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
-" status line
 set laststatus=2
 set statusline=%F%r%h%=
-"set colorcolumn=80
 
 
 " edit
