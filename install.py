@@ -59,15 +59,6 @@ def load_profile(profile):
     return json.load(open(filepath))
 
 
-def install(profile_name):
-    profile = load_profile(profile_name)
-    if profile.has_key("dotfiles") :
-        install_dotfiles(profile.get("dotfiles"))
-    print ""
-    if profile.has_key("scripts") :
-        execute_scripts(profile.get("scripts"))
-
-
 def main():
     if len(sys.argv) != 2 :
         print "Usage: %s [PROFILE_NAME]\n" % sys.argv[0]
@@ -75,7 +66,13 @@ def main():
         for profile in os.listdir(os.path.join(SCRIPT_DIR, 'profiles')):
             print "- %s" % profile.replace('.json', '')
         quit()
-    install(sys.argv[1])
+
+    profile = load_profile(sys.argv[1])
+
+    if profile.has_key("dotfiles") :
+        install_dotfiles(profile.get("dotfiles"))
+    if profile.has_key("scripts") :
+        execute_scripts(profile.get("scripts"))
 
 
 if __name__ == "__main__":
