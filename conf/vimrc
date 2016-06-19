@@ -5,39 +5,31 @@ set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
 set nocompatible
 syntax enable
 
-" neobundle
+" Plugins
 " ------------------------------
-filetype off
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible
 endif
+set runtimepath+=~/.vim/bundle/dein.vim
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#begin(expand('~/.vim/dein'))
 
-NeoBundle 'yonchu/accelerated-smooth-scroll'
-let g:ac_smooth_scroll_du_sleep_time_msec = 5
-let g:ac_smooth_scroll_fb_sleep_time_msec = 5
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-noremap <C-P> :Unite buffer<CR>
-noremap <C-N> :Unite rails/<Tab>
-noremap <C-Z> :Unite file_mru<CR>
+call dein#add('Shougo/neocomplete.vim')
 
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'marcus/rsense'
-NeoBundle 'supermomonga/neocomplete-rsense.vim'
-NeoBundle 'basyura/unite-rails'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-endwise'
+call dein#add('tpope/vim-rails')
+call dein#add('tpope/vim-endwise')
+call dein#add('slim-template/vim-slim')
+call dein#add('kchmck/vim-coffee-script')
 
-NeoBundle 'slim-template/vim-slim'
-NeoBundle 'kchmck/vim-coffee-script'
+call dein#end()
 
-call neobundle#end()
 
-NeoBundleCheck
+"NeoBundle 'yonchu/accelerated-smooth-scroll'
+"let g:ac_smooth_scroll_du_sleep_time_msec = 5
+"let g:ac_smooth_scroll_fb_sleep_time_msec = 5
 
 " neocomplete.vim
 let g:acp_enableAtStartup = 0
@@ -47,10 +39,6 @@ if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
-
-" rsense
-let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec/"
-let g:rsenseUseOmniFunc = 1
 
 
 " dysplay
