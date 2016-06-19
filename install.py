@@ -26,7 +26,7 @@ def install_dotfiles(dotfiles):
     for filename in dotfiles :
         conf = os.path.join(SCRIPT_DIR, 'conf', filename)
         if not os.path.exists(conf) :
-            print "Error: Config file '%s' is not found. (%s)" % (filename, conf)
+            colored_print("red", "Error: Config file '%s' is not found. (%s)" % (filename, conf))
             quit()
 
         colored_print("yellow", "==> install %s" % filename)
@@ -41,31 +41,30 @@ def execute_scripts(scripts):
     if scripts is None : return
     colored_print("green", "Execute scripts")
 
+    error_scripts = []
     for filename in scripts :
         script = os.path.join(SCRIPT_DIR, 'scripts', filename)
         if not os.path.exists(script) :
-            print "Error: Script file '%s' is not found. (%s)" % (filename, script)
+            colored_print("red", "Error: Script file '%s' is not found. (%s)" % (filename, script))
             quit()
 
         colored_print("yellow", "==> execute %s" % filename)
-        os.system(script)
+        ret = os.system(script)
+        if ret != 0:
+            error_scripts.append(filename)
+
+    if len(error_scripts) != 0:
+        colored_print("red", "Error scripts:")
+        for filename in error_scripts:
+            colored_print("red", "  - %s" % filename)
 
 
 def load_profile(profile):
     filepath = os.path.join(SCRIPT_DIR, 'profiles', profile + '.json')
     if not os.path.exists(filepath) :
-        print "Error: Profile '%s' is not found. (%s)" % (profile, filepath)
+        colored_print("red", "Error: Profile '%s' is not found. (%s)" % (profile, filepath))
         quit()
     return json.load(open(filepath))
-
-
-def install(profile_name):
-    profile = load_profile(profile_name)
-    if profile.has_key("dotfiles") :
-        install_dotfiles(profile.get("dotfiles"))
-    print ""
-    if profile.has_key("scripts") :
-        execute_scripts(profile.get("scripts"))
 
 
 def main():
@@ -75,7 +74,13 @@ def main():
         for profile in os.listdir(os.path.join(SCRIPT_DIR, 'profiles')):
             print "- %s" % profile.replace('.json', '')
         quit()
-    install(sys.argv[1])
+
+    profile = load_profile(sys.argv[1])
+
+    if profile.has_key("dotfiles") :
+        install_dotfiles(profile.get("dotfiles"))
+    if profile.has_key("scripts") :
+        execute_scripts(profile.get("scripts"))
 
 
 if __name__ == "__main__":
