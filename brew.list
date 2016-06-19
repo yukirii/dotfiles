@@ -1,6 +1,7 @@
 tree
 wget
 mas
+vim
 tmux
 reattach-to-user-namespace
 direnv

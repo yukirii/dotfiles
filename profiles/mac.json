@@ -8,9 +8,8 @@
   ],
   "scripts": [
     "homebrew.sh",
-    "neobundle.sh",
+    "dein.vim.sh",
     "rbenv.sh",
-    "rsense.sh",
     "monaco_for_powerline.sh",
     "iterm2-japanesque.sh"
   ]
