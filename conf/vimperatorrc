@@ -8,6 +8,8 @@ map l <c-pagedown>
 map <BS> <A-Left>
 set hlsearch
 
+noremap d <Nop>
+
 noremap ; :
 noremap : ;
 
