@@ -16,4 +16,5 @@ function install_powerline_status() {
   fi
 }
 
-install_python || install_powerline_status
+install_python
+install_powerline_status
