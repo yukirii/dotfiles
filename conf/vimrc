@@ -25,6 +25,7 @@ call dein#add('tpope/vim-rails')
 call dein#add('tpope/vim-endwise')
 call dein#add('slim-template/vim-slim')
 call dein#add('kchmck/vim-coffee-script')
+call dein#add('cespare/vim-toml')
 
 call dein#end()
 
