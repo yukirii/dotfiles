@@ -1,6 +1,8 @@
 # ~/.zshrc
 #=====================
 
+setopt extended_history
+
 # PATH
 #=====================
 export PATH="/usr/local/bin:/usr/bin:$PATH"
@@ -48,8 +50,10 @@ alias :Q='exit'
 
 alias be='bundle exec'
 alias tf='terraform'
+alias tf_plan='terraform plan --refresh=false'
 
 if [ `uname` = 'Darwin' ]; then
+  alias dnscache_clear='sudo killall -HUP mDNSResponder'
   alias ddprogress='while true; do sudo killall -INFO dd; sleep 2; done'
   alias libtool='glibtool'
   alias libtoolize='glibtoolize'
