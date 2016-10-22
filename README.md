@@ -16,5 +16,5 @@ cd ~/.dotfiles
 ```
 # System Preferences > App Store > Password Settings > Free Downloads: [Save Password]
 mas signin APPLE_ID PASSWORD
-./scripts/mas_install.sh
+./scripts/mas_install.py
 ```
