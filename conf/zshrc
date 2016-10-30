@@ -52,6 +52,8 @@ alias be='bundle exec'
 alias tf='terraform'
 alias tf_plan='terraform plan --refresh=false'
 
+alias globalip='curl inet-ip.info/yml'
+
 if [ `uname` = 'Darwin' ]; then
   alias dnscache_clear='sudo killall -HUP mDNSResponder'
   alias ddprogress='while true; do sudo killall -INFO dd; sleep 2; done'
