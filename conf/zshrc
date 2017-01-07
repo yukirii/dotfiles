@@ -15,6 +15,10 @@ if [ -e $HOME/.rbenv ]; then
   eval "$(rbenv init -)"
 fi
 
+if [ -f $HOME/bin/tfenv/bin/tfenv ]; then
+  export PATH="$HOME/bin/tfenv/bin:$PATH"
+fi
+
 # for OS X
 if [ `uname` = 'Darwin' ]; then
   export PATH="$HOME/Library/Python/2.7/bin:$PATH"
