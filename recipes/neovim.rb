@@ -8,7 +8,7 @@ directory "#{ENV['HOME']}/.config/nvim" do
 end
 
 link "#{ENV['HOME']}/.config/nvim/init.vim" do
-  to "#{ENV['HOME']}/.dotfiles/conf/config/nvim/init.vim"
+  to "#{ENV['HOME']}/.dotfiles/nvim/init.vim"
   action :create
 end
 
