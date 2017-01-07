@@ -14,5 +14,8 @@ curl -LSfs https://raw.githubusercontent.com/shiftky/dotfiles/master/install.sh 
 ```
 # System Preferences > App Store > Password Settings > Free Downloads: [Save Password]
 mas signin APPLE_ID PASSWORD
-./scripts/mas_install.sh
+for app in `cat $HOME/.dotfiles/mas.list | awk '{ print $1 }'`
+do
+  mas install $app
+done
 ```
