@@ -1,7 +1,7 @@
 tree
 wget
 mas
-vim
+neovim/neovim/neovim
 tmux
 reattach-to-user-namespace
 direnv
