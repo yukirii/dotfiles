@@ -11,3 +11,7 @@ link "#{ENV['HOME']}/.config/nvim/init.vim" do
   to "#{ENV['HOME']}/.dotfiles/conf/config/nvim/init.vim"
   action :create
 end
+
+git "#{ENV['HOME']}/.config/nvim/bundle/dein.vim" do
+  repository node[:neovim][:dein_vim_repo]
+end

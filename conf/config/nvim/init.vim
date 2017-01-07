@@ -3,44 +3,26 @@
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
 set nocompatible
+filetype plugin indent on
 syntax enable
+
 
 " Plugins
 " ------------------------------
 if &compatible
   set nocompatible
 endif
-set runtimepath+=~/.vim/bundle/dein.vim
+set runtimepath+=~/.config/nvim/bundle/dein.vim
 
-call dein#begin(expand('~/.vim/dein'))
+if dein#load_state(expand('~/.config/nvim/dein'))
+  call dein#begin(expand('~/.config/nvim/dein'))
 
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+  call dein#add('Shougo/dein.vim')
+  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
-call dein#add('Shougo/neocomplete.vim')
-
-call dein#add('yonchu/accelerated-smooth-scroll')
-
-call dein#add('tpope/vim-rails')
-call dein#add('tpope/vim-endwise')
-call dein#add('slim-template/vim-slim')
-call dein#add('kchmck/vim-coffee-script')
-call dein#add('cespare/vim-toml')
-
-call dein#end()
-
-" yonchu/accelerated-smooth-scroll
-let g:ac_smooth_scroll_du_sleep_time_msec = 5
-let g:ac_smooth_scroll_fb_sleep_time_msec = 5
-
-" Shougo/neocomplete.vim
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
+  call dein#end()
+  call dein#save_state()
 endif
-let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
 
 
 " dysplay
@@ -83,5 +65,3 @@ noremap <C-L> <C-W>l
 noremap ; :
 " wq alias
 command! -nargs=0 Wq wq
-
-filetype plugin indent on
