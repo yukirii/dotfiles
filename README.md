@@ -1,4 +1,4 @@
-# configuration files
+# dotfiles
 
 ## What's this?
 shiftky's configuration files
@@ -6,12 +6,10 @@ shiftky's configuration files
 ## How to install
 
 ```
-git clone https://github.com/shiftky/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-./install.py [PROFILE_NAME]
+curl -LSfs https://raw.githubusercontent.com/shiftky/dotfiles/master/install.sh | bash
 ```
 
-### Install AppStore apps
+## Install AppStore apps
 
 ```
 # System Preferences > App Store > Password Settings > Free Downloads: [Save Password]
