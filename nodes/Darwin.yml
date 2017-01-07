@@ -1,1 +1,33 @@
-user: hoge
+#run_list
+recipes:
+  - dotfiles
+  - powerline
+  - monaco_for_powerline
+  - rbenv
+  - homebrew_packages
+
+# attributes
+dotfiles:
+  - zshrc
+  - vimrc
+  - pryrc
+  - tmux.conf
+  - vimperatorrc
+ 
+homebrew_packages:
+  - neovim/neovim/neovim
+  - reattach-to-user-namespace
+  - tmux
+  - direnv
+  - wget
+  - tree
+  - mas
+  - jq
+  - python
+
+rbenv_repo: "https://github.com/sstephenson/rbenv.git"
+ruby_build_repo: "https://github.com/sstephenson/ruby-build.git"
+
+monaco_for_powerline:
+  filename: "Monaco for Powerline.otf"
+  url: "https://gist.github.com/baopham/1838072/raw/2c0e00770826e651d1e355962e751325edb0f1ee/Monaco%20for%20Powerline.otf"

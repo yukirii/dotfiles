@@ -1,4 +1,4 @@
-node[:roles] = node[:roles] || []
-node[:roles].each do |role|
-  include_recipe "roles/#{role}.rb"
+node[:recipes] = node[:recipes] || []
+node[:recipes].each do |recipe|
+  include_recipe "recipes/#{recipe}.rb"
 end
