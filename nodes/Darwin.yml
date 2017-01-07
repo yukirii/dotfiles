@@ -13,7 +13,7 @@ dotfiles:
   - pryrc
   - tmux.conf
   - vimperatorrc
- 
+
 homebrew_packages:
   - neovim/neovim/neovim
   - reattach-to-user-namespace
