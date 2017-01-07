@@ -10,8 +10,7 @@ export PATH="$HOME/bin:$PATH"
 
 # rbenv
 if [ -e $HOME/.rbenv ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  export PATH="$HOME/.rbenv/shims:$PATH"
+  export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
   eval "$(rbenv init -)"
 fi
 
@@ -340,6 +339,3 @@ function 256colortest() {
         echo -e "\e[38;05;${code}m $code: Test"
     done
 }
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
