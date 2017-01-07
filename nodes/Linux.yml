@@ -1,0 +1,15 @@
+#run_list
+recipes:
+  - dotfiles
+  - powerline
+  - rbenv
+
+# attributes
+dotfiles:
+  - zshrc
+  - vimrc
+  - pryrc
+  - tmux.conf
+
+rbenv_repo: "https://github.com/sstephenson/rbenv.git"
+ruby_build_repo: "https://github.com/sstephenson/ruby-build.git"
