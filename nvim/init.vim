@@ -31,8 +31,8 @@ if dein#check_install()
 endif
 
 " yonchu/accelerated-smooth-scroll
-let g:ac_smooth_scroll_du_sleep_time_msec = 10
-let g:ac_smooth_scroll_fb_sleep_time_msec = 10
+let g:ac_smooth_scroll_du_sleep_time_msec = 8
+let g:ac_smooth_scroll_fb_sleep_time_msec = 8
 
 
 " theme
@@ -42,8 +42,9 @@ set background=dark
 if (has('termguicolors'))
   set termguicolors
 endif
-colorscheme tender
-
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1
+colorscheme hybrid
 
 " display
 " ------------------------------
