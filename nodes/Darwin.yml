@@ -6,6 +6,7 @@ recipes:
   - rbenv
   - homebrew_packages
   - iterm2-japanesque
+  - neovim
 
 # attributes
 dotfiles:
@@ -16,7 +17,6 @@ dotfiles:
   - vimperatorrc
 
 homebrew_packages:
-  - neovim/neovim/neovim
   - reattach-to-user-namespace
   - tmux
   - direnv
