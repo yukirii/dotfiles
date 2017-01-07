@@ -9,23 +9,43 @@ syntax enable
 
 " Plugins
 " ------------------------------
-if &compatible
-  set nocompatible
-endif
 set runtimepath+=~/.config/nvim/bundle/dein.vim
+let s:dein_dir = expand('~/.config/nvim/dein')
 
-if dein#load_state(expand('~/.config/nvim/dein'))
-  call dein#begin(expand('~/.config/nvim/dein'))
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-  call dein#add('Shougo/dein.vim')
-  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+  let g:nvim_dir  = expand('~/.config/nvim')
+  let s:toml      = g:nvim_dir . '/dein.toml'
+  let s:lazy_toml = g:nvim_dir . '/dein_lazy.toml'
+
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
   call dein#end()
   call dein#save_state()
 endif
 
+if dein#check_install()
+  call dein#install()
+endif
 
-" dysplay
+" yonchu/accelerated-smooth-scroll
+let g:ac_smooth_scroll_du_sleep_time_msec = 10
+let g:ac_smooth_scroll_fb_sleep_time_msec = 10
+
+
+" theme
+" ------------------------------
+set t_Co=256
+set background=dark
+if (has('termguicolors'))
+  set termguicolors
+endif
+colorscheme tender
+
+
+" display
 " ------------------------------
 set number
 set ruler
