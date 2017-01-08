@@ -1,8 +1,6 @@
 # ~/.zshrc
 #=====================
 
-setopt extended_history
-
 # PATH
 #=====================
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -109,6 +107,18 @@ SAVEHIST=100000
 setopt hist_ignore_dups
 setopt share_history
 setopt append_history
+setopt extended_history
+
+function peco-history-selection() {
+  BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+  CURSOR=$#BUFFER
+  zle reset-prompt
+}
+if hash peco 2>/dev/null; then
+  zle -N peco-history-selection
+  bindkey '^R' peco-history-selection
+fi
+
 
 # prompt
 #=====================

@@ -1,0 +1,15 @@
+{
+  "Style": {
+    "Basic": ["on_default", "default"],
+    "SavedSelection": ["bold", "on_yellow", "white"],
+    "Selected": ["underline", "on_cyan", "black"],
+    "Query": ["green", "bold"],
+    "Matched": ["red", "bold"]
+  },
+  "keymap": {
+    "C-j": "peco.SelectDown",
+    "C-k": "peco.SelectUp",
+    "C-d": "peco.ScrollPageDown",
+    "C-u": "peco.ScrollPageUp"
+  }
+}
