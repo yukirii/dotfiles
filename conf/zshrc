@@ -350,3 +350,12 @@ function 256colortest() {
         echo -e "\e[38;05;${code}m $code: Test"
     done
 }
+
+# Plugins
+#=====================
+if [ -e $HOME/.zplug ]; then
+  source $HOME/.zplug/init.zsh
+  zplug "zsh-users/zsh-completions"
+  zplug "zsh-users/zsh-syntax-highlighting", defer:2
+  zplug load
+fi

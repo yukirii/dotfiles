@@ -8,6 +8,7 @@ recipes:
   - iterm2-japanesque
   - neovim
   - peco
+  - zplug
 
 # attributes
 dotfiles:
