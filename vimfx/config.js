@@ -10,8 +10,8 @@ const FIREFOX_PREFS = {
 const {commands} = vimfx.modes.normal;
 
 const KEY_MAPPINGS = {
-  'scroll_left': '.',
-  'scroll_right': ',',
+  'scroll_left': ',',
+  'scroll_right': '.',
   'scroll_half_page_down': '<c-d>',
   'scroll_half_page_up': '<c-u>',
 
