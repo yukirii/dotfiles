@@ -7,6 +7,7 @@ recipes:
   - homebrew_packages
   - iterm2-japanesque
   - neovim
+  - vimfx
   - peco
   - zplug
 
@@ -16,7 +17,6 @@ dotfiles:
   - vimrc
   - pryrc
   - tmux.conf
-  - vimperatorrc
 
 homebrew_packages:
   - reattach-to-user-namespace
