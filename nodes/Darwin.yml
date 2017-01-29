@@ -17,7 +17,6 @@ dotfiles:
   - vimrc
   - pryrc
   - tmux.conf
-  - vimperatorrc
 
 homebrew_packages:
   - reattach-to-user-namespace
