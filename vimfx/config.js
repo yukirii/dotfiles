@@ -20,11 +20,22 @@ const KEY_MAPPINGS = {
   'tab_select_previous': 'h',
   'tab_select_next': 'l',
 
+  'custom.mode.normal.hatena_bookmark': '<c-h>b',
   'custom.mode.caret.search_selected_text': 's',
   'custom.mode.caret.search_selected_translate': 't'
 }
 
 const CUSTOM_COMMANDS = [
+  [
+    {
+      name: 'hatena_bookmark',
+      description: 'hatena_bookmark',
+    }, ({vim}) => {
+      vimfx.send(vim, 'getCurrentPageUrl', null, href => {
+        vim.window.switchToTabHavingURI(`https://b.hatena.ne.jp/bookmarklet?url=${href}`, true)
+      })
+    }
+  ],
   [
     {
       name: 'search_selected_text',
@@ -45,7 +56,7 @@ const CUSTOM_COMMANDS = [
       mode: 'caret',
     }, ({vim}) => {
       vimfx.send(vim, 'getSelection', null, selection => {
-        vim.window.switchToTabHavingURI('https://translate.google.co.jp/?source=osdd#auto|auto|'+selection, true)
+        vim.window.switchToTabHavingURI(`https://translate.google.co.jp/?source=osdd#auto|auto|${selection}`, true)
       })
     }
   ]
