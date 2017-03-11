@@ -1,7 +1,7 @@
 matrix:
   include:
-    - os: linux
     - os: osx
+    - os: linux
 script:
   - rm -f $HOME/.zshrc
   - bash install.sh
