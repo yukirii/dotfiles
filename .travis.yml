@@ -1,0 +1,9 @@
+matrix:
+  include:
+    - os: osx
+    - os: linux
+before_install:
+  - rvm get stable
+script:
+  - rm -f $HOME/.zshrc
+  - bash install.sh

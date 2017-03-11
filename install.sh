@@ -24,7 +24,11 @@ $MITAMAE_BIN version
 
 # Clone shiftky/.dotfiles
 if [ ! -e $DOTFILES_DIR ]; then
-  git clone https://github.com/shiftky/dotfiles.git $DOTFILES_DIR
+  if "$TRAVIS" = "true"; then
+    git clone -b $TRAVIS_BRANCH https://github.com/shiftky/dotfiles.git $DOTFILES_DIR
+  else
+    git clone https://github.com/shiftky/dotfiles.git $DOTFILES_DIR
+  fi
 fi
 cd $DOTFILES_DIR
 
