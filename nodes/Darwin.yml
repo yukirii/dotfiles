@@ -28,10 +28,12 @@ homebrew_packages:
   - mas
   - jq
 
-rbenv_repo: "https://github.com/sstephenson/rbenv.git"
-ruby_build_repo: "https://github.com/sstephenson/ruby-build.git"
+rbenv:
+  rbenv_repo: "https://github.com/sstephenson/rbenv.git"
+  ruby_build_repo: "https://github.com/sstephenson/ruby-build.git"
 
-pyenv_repo: "https://github.com/pyenv/pyenv.git"
+pyenv:
+  pyenv_repo: "https://github.com/pyenv/pyenv.git"
 
 monaco_for_powerline:
   filename: "Monaco for Powerline.otf"
@@ -42,4 +44,3 @@ iterm2_japanesque:
 
 neovim:
   dein_vim_repo: "https://github.com/Shougo/dein.vim.git"
-
