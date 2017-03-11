@@ -1,15 +1,16 @@
 #run_list
 recipes:
   - dotfiles
-  - powerline
-  - monaco_for_powerline
-  - rbenv
   - homebrew_packages
-  - iterm2-japanesque
+  - rbenv
+  - pyenv
   - neovim
-  - vimfx
   - peco
   - zplug
+  - powerline
+  - monaco_for_powerline
+  - iterm2-japanesque
+  - vimfx
 
 # attributes
 dotfiles:
@@ -26,10 +27,11 @@ homebrew_packages:
   - tree
   - mas
   - jq
-  - python
 
 rbenv_repo: "https://github.com/sstephenson/rbenv.git"
 ruby_build_repo: "https://github.com/sstephenson/ruby-build.git"
+
+pyenv_repo: "https://github.com/pyenv/pyenv.git"
 
 monaco_for_powerline:
   filename: "Monaco for Powerline.otf"

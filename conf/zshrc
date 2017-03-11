@@ -13,6 +13,14 @@ if [ -e $HOME/.rbenv ]; then
   eval "$(rbenv init -)"
 fi
 
+# pyenv
+if [ -e $HOME/.pyenv ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
+
+# tfenv
 if [ -f $HOME/bin/tfenv/bin/tfenv ]; then
   export PATH="$HOME/bin/tfenv/bin:$PATH"
 fi
