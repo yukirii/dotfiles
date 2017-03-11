@@ -1,0 +1,5 @@
+matrix:
+  include:
+    - os: linux
+    - os: osx
+  script: bash install.sh
