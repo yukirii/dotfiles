@@ -2,4 +2,6 @@ matrix:
   include:
     - os: linux
     - os: osx
-script: bash install.sh
+script:
+  - rm -f $HOME/.zshrc
+  - bash install.sh
