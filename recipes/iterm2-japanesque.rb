@@ -3,7 +3,7 @@ directory "#{ENV['HOME']}/.dotfiles/tmp" do
   action :create
 end
 
-if ENV['CONTINUOUS_INTEGRATION'] != 'true'
+if false
   execute "Install iterm2-japanesque" do
     command <<-EOF
       wget #{node[:iterm2_japanesque][:url]} -O #{ENV['HOME']}/.dotfiles/tmp/Japanesque.itermcolors
