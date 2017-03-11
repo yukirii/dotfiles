@@ -11,5 +11,6 @@ dotfiles:
   - pryrc
   - tmux.conf
 
-rbenv_repo: "https://github.com/sstephenson/rbenv.git"
-ruby_build_repo: "https://github.com/sstephenson/ruby-build.git"
+rbenv:
+  rbenv_repo: "https://github.com/sstephenson/rbenv.git"
+  ruby_build_repo: "https://github.com/sstephenson/ruby-build.git"
