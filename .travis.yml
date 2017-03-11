@@ -2,4 +2,4 @@ matrix:
   include:
     - os: linux
     - os: osx
-  script: bash install.sh
+script: bash install.sh
