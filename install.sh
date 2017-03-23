@@ -17,7 +17,7 @@ if [ ! -e $HOME/bin ]; then
   mkdir $HOME/bin
 fi
 if [ ! -e $MITAMAE_BIN ]; then
-  wget $MITAMAE_URL -O $MITAMAE_BIN
+  curl -L $MITAMAE_URL -o $MITAMAE_BIN
   chmod +x $MITAMAE_BIN
 fi
 $MITAMAE_BIN version
