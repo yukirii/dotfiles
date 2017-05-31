@@ -62,7 +62,7 @@ alias be='bundle exec'
 alias tf='terraform'
 alias tf_plan='terraform plan --refresh=false'
 
-alias globalip='curl inet-ip.info/yml'
+alias globalip='curl http://globalip.me'
 
 if [ `uname` = 'Darwin' ]; then
   alias dnscache_clear='sudo killall -HUP mDNSResponder'
