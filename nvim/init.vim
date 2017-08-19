@@ -1,4 +1,4 @@
-" ~/.vimrc
+" ~/.config/nvim/init.vim
 " ------------------------------
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
@@ -46,6 +46,7 @@ let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
 
+
 " display
 " ------------------------------
 set number
@@ -55,6 +56,7 @@ set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 set laststatus=2
 set statusline=%F%r%h%=
+au VimLeave * set guicursor=a:hor10-blinkon0
 
 
 " edit
