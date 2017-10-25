@@ -73,6 +73,7 @@ set tabstop=2
 au FileType go setlocal sw=4 ts=4 sts=4 noet
 set incsearch
 set backspace=indent,eol,start
+set nofoldenable
 
 
 " keymap
