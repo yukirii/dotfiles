@@ -20,7 +20,10 @@ hook_post_update = '''
 repo = 'yonchu/accelerated-smooth-scroll'
 
 [[plugins]]
-repo = 'tpope/vim-endwise'
+repo = 'w0ng/vim-hybrid'
 
 [[plugins]]
-repo = 'w0ng/vim-hybrid'
+repo = 'cocopon/vaffle.vim'
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'

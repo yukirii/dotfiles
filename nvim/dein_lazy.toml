@@ -1,6 +1,13 @@
 [[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
+hook_add = '''
+  let g:go_fmt_command = "goimports"
+'''
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_ft = 'ruby'
 
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'

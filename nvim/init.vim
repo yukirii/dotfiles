@@ -78,14 +78,15 @@ set nofoldenable
 
 " keymap
 " ------------------------------
-nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <Space> <C-E>
-nnoremap <S-Space> <C-Y>
+nnoremap s <Nop>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
 noremap <C-H> <C-W>h
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-L> <C-W>l
+nnoremap <Space> <C-E>
+nnoremap <S-Space> <C-Y>
 noremap ; :
 " wq alias
 command! -nargs=0 Wq wq
