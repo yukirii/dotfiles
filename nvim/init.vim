@@ -3,14 +3,16 @@
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
 set nocompatible
-filetype plugin indent on
-syntax enable
 
 
 " Plugins
 " ------------------------------
-set runtimepath+=~/.config/nvim/bundle/dein.vim
-let s:dein_dir = expand('~/.config/nvim/dein')
+if &compatible
+  set nocompatible
+endif
+
+set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
+let s:dein_dir = expand('~/.vim/bundles/repos/github.com/Shougo/dein.vim')
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
@@ -19,6 +21,7 @@ if dein#load_state(s:dein_dir)
   let s:toml      = g:nvim_dir . '/dein.toml'
   let s:lazy_toml = g:nvim_dir . '/dein_lazy.toml'
 
+  call dein#add(s:dein_dir)
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
@@ -61,7 +64,8 @@ au VimLeave * set guicursor=a:hor10-blinkon0
 
 " edit
 " ------------------------------
-filetype plugin on
+filetype plugin indent on
+syntax enable
 autocmd FileType *
 \   if &l:omnifunc == ''
 \ |   setlocal omnifunc=syntaxcomplete#Complete
