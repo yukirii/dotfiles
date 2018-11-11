@@ -13,3 +13,9 @@ repo = 'cocopon/vaffle.vim'
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repo = 'Raimondi/delimitMate'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
