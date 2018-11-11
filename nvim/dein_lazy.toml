@@ -1,13 +1,49 @@
 [[plugins]]
+repo = 'Shougo/neosnippet'
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+'''
+on_i  = 1
+on_ft = ['snippet']
+depends = ['neosnippet-snippets']
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+build = 'pip3 install --user --upgrade neovim'
+hook_source = '''
+  let g:deoplete#enable_at_startup = 1
+
+  autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+  inoremap <expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
+
+  imap <expr><TAB> pumvisible() ? "\<C-n>" :
+    \ neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  call deoplete#custom#option('omni_patterns', {
+  \ 'complete_method': 'omnifunc',
+  \ 'terraform': '[^ *\t"{=$]\w*',
+  \})
+
+  call deoplete#initialize()
+'''
+on_i = 1
+
+[[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
 hook_add = '''
   let g:go_fmt_command = "goimports"
 '''
-
-[[plugins]]
-repo = 'tpope/vim-endwise'
-on_ft = 'ruby'
 
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'
@@ -42,30 +78,8 @@ repo = 'fishbullet/deoplete-ruby'
 on_ft = 'ruby'
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-build = 'pip3 install --user --upgrade neovim'
-hook_source = '''
-  let g:deoplete#enable_at_startup = 1
-
-  autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-  inoremap <expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
-
-  imap <expr><TAB> pumvisible() ? "\<C-n>" :
-    \ neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-  call deoplete#custom#option('omni_patterns', {
-  \ 'complete_method': 'omnifunc',
-  \ 'terraform': '[^ *\t"{=$]\w*',
-  \})
-
-  call deoplete#initialize()
-'''
-on_i = 1
+repo = 'tpope/vim-endwise'
+on_ft = 'ruby'
 
 [[plugins]]
 repo = 'hashivim/vim-terraform'
@@ -73,19 +87,6 @@ on_ft = 'terraform'
 
 [[plugins]]
 repo = 'juliosueiras/vim-terraform-completion'
+build = 'gem install neovim'
 on_ft = 'terraform'
 depends_on = ['deoplete.nvim', 'vim-terraform']
-
-[[plugins]]
-repo = 'Shougo/neosnippet'
-hook_source = '''
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
-'''
-on_i  = 1
-on_ft = ['snippet']
-depends = ['neosnippet-snippets']

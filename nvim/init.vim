@@ -29,6 +29,9 @@ endif
 
 if dein#check_install()
   call dein#install()
+  if has('nvim')
+    call dein#remote_plugins()
+  endif
 endif
 
 filetype plugin indent on
