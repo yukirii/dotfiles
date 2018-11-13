@@ -48,6 +48,16 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'zchee/deoplete-go'
+make = 'make && go get -u github.com/mdempsky/gocode'
+on-ft = 'go'
+hook_add = '''
+  let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+  let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+'''
+depends_on = ['deoplete.nvim']
+
+[[plugins]]
 repo = 'kchmck/vim-coffee-script'
 on_ft = 'coffee'
 
