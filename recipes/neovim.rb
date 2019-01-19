@@ -6,10 +6,18 @@ package 'neovim/neovim/neovim' do
   action :install
 end
 
-git "#{ENV['HOME']}/.config/nvim/bundle/dein.vim" do
-  repository node[:neovim][:dein_vim_repo]
+## Shougo/dein.vim
+directory "#{ENV['HOME']}/.vim/bundles"
+
+execute "Install dein.vim" do
+  command <<-EOF
+    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh -o #{ENV['HOME']}/.vim/bundles/dein-installer.sh
+    sh #{ENV['HOME']}/.vim/bundles/dein-installer.sh #{ENV['HOME']}/.vim/bundles
+  EOF
+  not_if "test -e #{ENV['HOME']}/.vim/bundles/repos/github.com/Shougo/dein.vim"
 end
 
+## configs
 %w[
   init.vim
   dein.toml
