@@ -22,12 +22,12 @@ if [ ! -e $MITAMAE_BIN ]; then
 fi
 $MITAMAE_BIN version
 
-# Clone shiftky/.dotfiles
+# Clone yukirii/.dotfiles
 if [ ! -e $DOTFILES_DIR ]; then
   if "$TRAVIS" = "true"; then
-    git clone -b $TRAVIS_BRANCH https://github.com/shiftky/dotfiles.git $DOTFILES_DIR
+    git clone -b $TRAVIS_BRANCH https://github.com/yukirii/dotfiles.git $DOTFILES_DIR
   else
-    git clone https://github.com/shiftky/dotfiles.git $DOTFILES_DIR
+    git clone https://github.com/yukirii/dotfiles.git $DOTFILES_DIR
   fi
 fi
 cd $DOTFILES_DIR
