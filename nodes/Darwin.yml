@@ -7,7 +7,7 @@ recipes:
   - neovim
   - peco
   - zplug
-  - powerline
+  - tmux
   - monaco_for_powerline
   - iterm2-japanesque
   - vimfx
@@ -17,11 +17,9 @@ dotfiles:
   - zshrc
   - vimrc
   - pryrc
-  - tmux.conf
 
 homebrew_packages:
   - reattach-to-user-namespace
-  - tmux
   - direnv
   - wget
   - tree

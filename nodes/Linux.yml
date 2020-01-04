@@ -1,7 +1,7 @@
 #run_list
 recipes:
   - dotfiles
-  - powerline
+  - tmux
   - peco
   - neovim
   - anyenv
@@ -11,4 +11,3 @@ dotfiles:
   - zshrc
   - vimrc
   - pryrc
-  - tmux.conf
