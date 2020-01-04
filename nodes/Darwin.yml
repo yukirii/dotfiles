@@ -28,19 +28,9 @@ homebrew_packages:
   - mas
   - jq
 
-rbenv:
-  rbenv_repo: "https://github.com/sstephenson/rbenv.git"
-  ruby_build_repo: "https://github.com/sstephenson/ruby-build.git"
-
-pyenv:
-  pyenv_repo: "https://github.com/pyenv/pyenv.git"
-
 monaco_for_powerline:
   filename: "Monaco for Powerline.otf"
   url: "https://gist.github.com/baopham/1838072/raw/2c0e00770826e651d1e355962e751325edb0f1ee/Monaco%20for%20Powerline.otf"
 
 iterm2_japanesque:
   url: "https://raw.githubusercontent.com/aereal/dotfiles/master/colors/Japanesque/Japanesque.itermcolors"
-
-neovim:
-  dein_vim_repo: "https://github.com/Shougo/dein.vim.git"

@@ -1,7 +1,7 @@
 git "#{ENV['HOME']}/.rbenv" do
-  repository node[:rbenv][:rbenv_repo]
+  repository "https://github.com/sstephenson/rbenv.git"
 end
 
 git "#{ENV['HOME']}/.rbenv/plugins/ruby-build" do
-  repository node[:rbenv][:ruby_build_repo]
+  repository "https://github.com/sstephenson/ruby-build.git"
 end
