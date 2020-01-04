@@ -1,4 +1,6 @@
-export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+if [ -z $TMUX ]; then
+  export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+fi
 
 if hash direnv 2>/dev/null; then
   eval "$(direnv hook zsh)"

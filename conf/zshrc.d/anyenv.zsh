@@ -1,4 +1,6 @@
 if [ -e $HOME/.anyenv ]; then
-  export PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$(anyenv init -)"
+  if [ -z $TMUX ]; then
+    export PATH="$HOME/.anyenv/bin:$PATH"
+  fi
+  eval "$(anyenv init - --no-rehash)"
 fi
