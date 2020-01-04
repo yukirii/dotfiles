@@ -3,6 +3,7 @@ directory "#{ENV['HOME']}/.config/peco" do
 end
 
 package 'peco' do
+  user 'root' unless node[:platform] == "darwin"
   action :install
 end
 
