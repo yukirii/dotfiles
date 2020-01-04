@@ -1,11 +1,13 @@
 # ~/.zshrc
 #=====================
 
+export DOCKER_HOST=tcp://localhost:2375
+
 # PATH
 #=====================
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="/usr/local/bin:/usr/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # rbenv
 if [ -e $HOME/.rbenv ]; then
@@ -41,9 +43,8 @@ export LC_ALL='ja_JP.UTF-8'
 
 # alias
 #=====================
-alias ls='ls -GF'
 alias ll='ls -l'
-alias la='ls -A'
+alias la='ls -la'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -54,9 +55,11 @@ alias upup='cd ../..'
 alias upupup='cd ../../..'
 alias :q='exit'
 alias :Q='exit'
-if hash nvim 2>/dev/null; then
+
+if type nvim &>/dev/null; then
   alias vim='nvim'
 fi
+
 alias vi='vim'
 alias be='bundle exec'
 alias tf='terraform'
@@ -70,7 +73,7 @@ if [ `uname` = 'Darwin' ]; then
   alias libtool='glibtool'
   alias libtoolize='glibtoolize'
 
-  if hash ggrep 2>/dev/null; then
+  if type ggrep &>/dev/null; then
     alias grep='ggrep'
   fi
 
@@ -118,10 +121,16 @@ setopt append_history
 setopt extended_history
 
 function peco-history-selection() {
-  BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+  if [ `uname` = 'Darwin' ]; then
+    REVERSE_CMD="tail -r"
+  else
+    REVERSE_CMD="tac"
+  fi
+  BUFFER=`history -n 1 | $REVERSE_CMD | awk '!a[$0]++' | peco`
   CURSOR=$#BUFFER
   zle reset-prompt
 }
+
 if hash peco 2>/dev/null; then
   zle -N peco-history-selection
   bindkey '^R' peco-history-selection
@@ -258,4 +267,3 @@ if [ -e $HOME/.zplug ]; then
   zplug "zsh-users/zsh-syntax-highlighting", defer:2
   zplug load
 fi
-
