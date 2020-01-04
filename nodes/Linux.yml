@@ -4,6 +4,7 @@ recipes:
   - powerline
   - peco
   - neovim
+  - anyenv
 
 # attributes
 dotfiles:
