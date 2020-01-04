@@ -1,8 +1,6 @@
 # ~/.zshrc
 #=====================
 
-export DOCKER_HOST=tcp://localhost:2375
-
 # PATH
 #=====================
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -27,15 +25,6 @@ if [ -f $HOME/bin/tfenv/bin/tfenv ]; then
   export PATH="$HOME/bin/tfenv/bin:$PATH"
 fi
 
-# for OS X
-if [ `uname` = 'Darwin' ]; then
-  export PATH="$HOME/Library/Python/2.7/bin:$PATH"
-
-  if hash direnv 2>/dev/null; then
-    eval "$(direnv hook zsh)"
-  fi
-fi
-
 # LANG
 #=====================
 export LANG='ja_JP.UTF-8'
@@ -55,34 +44,13 @@ alias upup='cd ../..'
 alias upupup='cd ../../..'
 alias :q='exit'
 alias :Q='exit'
-
-if type nvim &>/dev/null; then
-  alias vim='nvim'
-fi
-
-alias vi='vim'
 alias be='bundle exec'
 alias tf='terraform'
 alias tf_plan='terraform plan --refresh=false'
-
 alias globalip='curl http://globalip.me'
-
-if [ `uname` = 'Darwin' ]; then
-  alias dnscache_clear='sudo killall -HUP mDNSResponder'
-  alias ddprogress='while true; do sudo killall -INFO dd; sleep 2; done'
-  alias libtool='glibtool'
-  alias libtoolize='glibtoolize'
-
-  if type ggrep &>/dev/null; then
-    alias grep='ggrep'
-  fi
-
-  # Application Shortcuts
-  alias firefox='open -a Firefox'
-  alias safari='open -a safari'
-  alias chrome='open -a /Applications/Google\ Chrome.app'
-  alias cot='open -a CotEditor'
-  alias marked='open -a /Applications/Marked\ 2.app'
+alias vi='vim'
+if type nvim &>/dev/null; then
+  alias vim='nvim'
 fi
 
 # setopt
@@ -120,22 +88,6 @@ setopt share_history
 setopt append_history
 setopt extended_history
 
-function peco-history-selection() {
-  if [ `uname` = 'Darwin' ]; then
-    REVERSE_CMD="tail -r"
-  else
-    REVERSE_CMD="tac"
-  fi
-  BUFFER=`history -n 1 | $REVERSE_CMD | awk '!a[$0]++' | peco`
-  CURSOR=$#BUFFER
-  zle reset-prompt
-}
-
-if hash peco 2>/dev/null; then
-  zle -N peco-history-selection
-  bindkey '^R' peco-history-selection
-fi
-
 # prompt
 #=====================
 autoload -Uz colors ; colors
@@ -145,125 +97,10 @@ PSCOLOR='01;32'
 PROMPT=$'%{\e[38;05;${PSCOLOR}m%}${USERNAME}%# %{\e[m%}'
 SPROMPT=$'%{\e[${PSCOLOR}m%}%r is correct? [n,y,a,e]:%{${reset_color}%} '
 
-autoload -Uz vcs_info
-autoload -Uz add-zsh-hook
-setopt PROMPT_SUBST
-
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' max-exports 3
-
-zstyle ':vcs_info:git:*' formats '(%s)-[%b]' '%c%u%m'
-zstyle ':vcs_info:git:*' actionformats '(%s)-[%b]' '%c%u%m' '<!%a>'
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '+'
-zstyle ':vcs_info:git:*' unstagedstr '-'
-
-zstyle ':vcs_info:git+set-message:*' hooks \
-                                     git-hook-begin \
-                                     git-untracked #\
-                                     #git-stash-count
-
-function +vi-git-hook-begin() {
-  if [[ $(command git rev-parse --is-inside-work-tree 2> /dev/null) != 'true' ]]; then
-    return 1
-  fi
-  return 0
-}
-
-function +vi-git-untracked() {
-  if [[ "$1" != "1" ]]; then
-    return 0
-  fi
-
-  if command git status --porcelain 2> /dev/null \
-      | command grep -F '??' > /dev/null 2>&1 ; then
-    hook_com[unstaged]+='?'
-  fi
-}
-
-function +vi-git-stash-count() {
-  if [[ "$1" != "1" ]]; then
-    return 0
-  fi
-
-  local stash
-  stash=$(command git stash list -n 100 2>/dev/null | wc -l | sed 's/^[ \t]*//')
-  if [[ "${stash}" -gt 0 ]]; then
-    hook_com[misc]+=":S${stash}"
-  fi
-}
-
-function _update_vcs_info_msg() {
-  local -a messages
-  local prompt
-
-  LANG=en_US.UTF-8 vcs_info
-
-  if [[ -z ${vcs_info_msg_0_} ]]; then
-    prompt=""
-  else
-    [[ -n "$vcs_info_msg_0_" ]] && messages+=( "%F{green}${vcs_info_msg_0_}%f" )
-    [[ -n "$vcs_info_msg_1_" ]] && messages+=( "%F{yellow}${vcs_info_msg_1_}%f" )
-    [[ -n "$vcs_info_msg_2_" ]] && messages+=( "%F{red}${vcs_info_msg_2_}%f" )
-    prompt="${(j: :)messages} "
-  fi
-
-  RPROMPT="[${prompt}%~]"
-}
-
-add-zsh-hook precmd _update_vcs_info_msg
-
-# function
+# source ~/.zshrc.d/*.zsh
 #=====================
-# dd cmd progress
-function dd_progress() {
-  if [ `uname` = 'Darwin' ]; then
-    while true; do sudo killall -INFO dd; sleep 2; done
-  else
-    while true; do sudo killall -USR1 dd; sleep 2; done
-  fi
-}
-
-# google search
-function google() {
-  local str opt
-  if [ $# != 0 ]; then
-    for i in $*; do
-      str="$str+$i"
-    done
-    str=`echo $str | sed 's/^\+//'`
-    opt='search?num=50&hl=ja&lr=lang_ja'
-    opt="${opt}&q=${str}"
-  fi
-  firefox http://www.google.co.jp/$opt
-}
-
-# University of Tsukuba Library tulips search
-function tulips() {
-  local str opt
-  if [ $# != 0 ]; then
-    for i in $*; do
-      str="$str+$i"
-    done
-    str=`echo $str | sed 's/^\+//'`
-    opt="search?q=${str}"
-  fi
-  firefox http://tsukuba.summon.serialssolutions.com/$opt
-}
-
-# 256colors
-function 256colortest() {
-    local code
-    for code in {0..255}; do
-        echo -e "\e[38;05;${code}m $code: Test"
-    done
-}
-
-# Plugins
-#=====================
-if [ -e $HOME/.zplug ]; then
-  source $HOME/.zplug/init.zsh
-  zplug "zsh-users/zsh-completions"
-  zplug "zsh-users/zsh-syntax-highlighting", defer:2
-  zplug load
+if [ -d $HOME/.zshrc.d ]; then
+  for file in $HOME/.zshrc.d/*.zsh; do
+    source $file
+  done
 fi
