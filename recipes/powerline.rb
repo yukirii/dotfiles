@@ -4,6 +4,6 @@ execute 'Install pip' do
 end
 
 execute 'Install powerline-status' do
-  command 'pip install powerline-status --user'
+  command 'pip install powerline-status'
   not_if 'pip list | grep powerline-status'
 end
