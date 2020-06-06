@@ -2,8 +2,7 @@
 recipes:
   - dotfiles
   - homebrew_packages
-  - rbenv
-  - pyenv
+  - anyenv
   - neovim
   - peco
   - zplug
