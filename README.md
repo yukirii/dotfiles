@@ -1,14 +1,14 @@
 # dotfiles
 
-[![Build Status](https://travis-ci.org/shiftky/dotfiles.svg?branch=master)](https://travis-ci.org/shiftky/dotfiles)
+[![Build Status](https://travis-ci.org/yukirii/dotfiles.svg?branch=master)](https://travis-ci.org/yukirii/dotfiles)
 
 ## What's this?
-shiftky's configuration files
+yukirii's configuration files
 
 ## How to install
 
 ```
-curl -LSfs https://raw.githubusercontent.com/shiftky/dotfiles/master/install.sh | bash
+curl -LSfs https://raw.githubusercontent.com/yukirii/dotfiles/master/install.sh | bash
 ```
 
 ## Install AppStore apps

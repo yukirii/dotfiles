@@ -1,3 +1,3 @@
 git "#{ENV['HOME']}/.pyenv" do
-  repository node[:pyenv][:pyenv_repo]
+  repository "https://github.com/pyenv/pyenv.git"
 end

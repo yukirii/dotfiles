@@ -81,6 +81,7 @@ set incsearch
 set backspace=indent,eol,start
 set nofoldenable
 
+set conceallevel=0
 
 " keymap
 " ------------------------------

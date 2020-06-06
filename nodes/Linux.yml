@@ -1,16 +1,13 @@
 #run_list
 recipes:
   - dotfiles
-  - powerline
-  - rbenv
+  - tmux
+  - peco
+  - neovim
+  - anyenv
 
 # attributes
 dotfiles:
   - zshrc
   - vimrc
   - pryrc
-  - tmux.conf
-
-rbenv:
-  rbenv_repo: "https://github.com/sstephenson/rbenv.git"
-  ruby_build_repo: "https://github.com/sstephenson/ruby-build.git"

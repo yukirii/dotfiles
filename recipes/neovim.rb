@@ -2,8 +2,15 @@ directory "#{ENV['HOME']}/.config/nvim" do
   not_if "test -e #{ENV['HOME']}/.config/nvim"
 end
 
-package 'neovim/neovim/neovim' do
-  action :install
+if node[:platform] == "darwin"
+  package 'neovim/neovim/neovim' do
+    action :install
+  end
+else
+  package 'neovim' do
+    user 'root'
+    action :install
+  end
 end
 
 ## Shougo/dein.vim

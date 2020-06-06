@@ -2,7 +2,7 @@
 
 DOTFILES_DIR="$HOME/.dotfiles"
 MITAMAE_BIN="$HOME/bin/mitamae"
-MITAMAE_URL="https://github.com/k0kubun/mitamae/releases/download/v1.4.2/mitamae-x86_64-`uname`"
+MITAMAE_URL="https://github.com/k0kubun/mitamae/releases/download/v1.10.0/mitamae-x86_64-`uname`"
 
 if [ `uname` = 'Darwin' ]; then
   # Install homebrew
