@@ -23,7 +23,8 @@ alias kctx='peco-kubectl-switch-context'
 function peco-kubectl-ssh-jump(){
   node=$(kubectl get nodes --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | peco --prompt='kubectl ssh-jump > ')
   if [ -n "$node" ]; then
-    kubectl ssh-jump $node
+    ipaddr=$(kubectl get nodes -o wide | grep $node | awk '{ print $6 }')
+    kubectl ssh-jump $ipaddr
   fi
 }
 
