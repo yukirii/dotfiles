@@ -44,3 +44,26 @@ function 256colortest() {
         echo -e "\e[38;05;${code}m $code: Test"
     done
 }
+
+# Open AKS cluster set as the current context in Azure Portal
+function aksportal() {
+  ctx=$(kubectl config current-context)
+  echo "Current context: $ctx"
+
+  id=$(az aks list | jq -r ".[] | select (.name == \"$ctx\") | .id")
+  if [ -z "$id"]; then
+    echo "Error: '$ctx' not found in 'az aks list'"
+    return 1
+  fi
+
+  url="https://portal.azure.com/#resource$id/overview"
+  echo "Opening $url"
+
+  if [ `uname` = 'Darwin' ]; then
+    open $url
+  else
+    if uname -r | grep Microsoft; then
+      cmd.exe /C start $url
+    fi
+  fi
+}
