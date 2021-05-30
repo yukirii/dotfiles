@@ -29,3 +29,22 @@ function peco-kubectl-ssh-jump(){
 }
 
 alias kssh='peco-kubectl-ssh-jump'
+
+function peco-kubectl-node-shell(){
+  node=$(kubectl get nodes --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | peco --prompt='kubectl node-shell > ')
+  if [ -n "$node" ]; then
+    kubectl node-shell $node
+  fi
+}
+
+alias knode-shell='peco-kubectl-node-shell'
+
+function peco-kubectl-exec(){
+  pod=$(kubectl get pods --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | peco)
+  if [ -n "$pod" ]; then
+    echo $pod
+    kubectl exec -it $pod $*
+  fi
+}
+
+alias kexec='peco-kubectl-exec'
