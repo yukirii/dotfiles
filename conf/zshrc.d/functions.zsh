@@ -67,3 +67,8 @@ function aksportal() {
     fi
   fi
 }
+
+# fix bp permission
+function fix_bp_permission() {
+  sudo chown $(whoami):admin /dev/bp*
+}

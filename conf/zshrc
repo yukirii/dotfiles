@@ -9,6 +9,8 @@ if [ -z $TMUX ]; then
   export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 fi
 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # LANG
 #=====================
 export LANG='ja_JP.UTF-8'
@@ -100,3 +102,5 @@ if [ -d $HOME/.zshrc.d ]; then
     source $file
   done
 fi
+
+export PATH="$HOME/go/bin:$PATH"
