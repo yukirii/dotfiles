@@ -1,6 +1,6 @@
 # dotfiles
 
-[![Build Status](https://travis-ci.org/yukirii/dotfiles.svg?branch=master)](https://travis-ci.org/yukirii/dotfiles)
+[![Build Status](https://travis-ci.org/yukirii/dotfiles.svg?branch=main)](https://travis-ci.org/yukirii/dotfiles)
 
 ## What's this?
 yukirii's configuration files
@@ -8,7 +8,7 @@ yukirii's configuration files
 ## How to install
 
 ```
-curl -LSfs https://raw.githubusercontent.com/yukirii/dotfiles/master/install.sh | bash
+curl -LSfs https://raw.githubusercontent.com/yukirii/dotfiles/main/install.sh | bash
 ```
 
 ## Install AppStore apps
