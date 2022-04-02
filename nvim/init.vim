@@ -9,6 +9,7 @@ if &compatible
   set nocompatible
 endif
 
+let g:python_host_prog = $PYENV_ROOT . '/shims/python'
 let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
 set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim

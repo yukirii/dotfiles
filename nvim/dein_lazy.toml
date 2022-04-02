@@ -72,11 +72,3 @@ repo = 'juliosueiras/vim-terraform-completion'
 build = 'gem install neovim'
 on_ft = 'terraform'
 depends_on = ['deoplete.nvim', 'vim-terraform']
-
-[[plugins]]
-repo = 'pearofducks/ansible-vim'
-on_ft = 'ansible'
-
-[[plugins]]
-repo = 'MicahElliott/Rocannon'
-on_ft = 'ansible'
