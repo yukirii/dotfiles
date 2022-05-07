@@ -45,20 +45,39 @@ function 256colortest() {
     done
 }
 
-# Open AKS cluster set as the current context in Azure Portal
-function aksportal() {
-  master=$(kubectl cluster-info | grep "Kubernetes master")
+# Get AKS clsuter information by current context
+function getakscluster() {
+  master=$(kubectl cluster-info | grep "Kubernetes control plane")
   fqdn_port=$(echo "${master#*://}")
   fqdn="${fqdn_port%:*}"
-  echo "Current master: $fqdn"
 
-  id=$(az aks list | jq -r ".[] | select (.fqdn == \"$fqdn\") | .id")
-  if [ -z "$id" ]; then
+  out=$(az aks list | jq -r ".[] | select (.fqdn == \"$fqdn\")")
+  if [ -z "$out" ]; then
     echo "Error: '$fqdn' not found in 'az aks list'"
     return 1
   fi
 
+  echo $out | tr -d '[:cntrl:]'
+}
+
+# Start VMSS of AKS cluster set as the current context
+function aksvmssstart() {
+  node_resource_group=$(getakscluster | jq -r ".nodeResourceGroup")
+  echo "Node Resource Group: $node_resource_group"
+
+  vmss_list=$(az vmss list -g $node_resource_group | jq -r ".[].name")
+  for vmss in $vmss_list
+  do
+    echo "VMSS: $vmss"
+    az vmss start -g $node_resource_group -n $vmss
+  done
+}
+
+# Open AKS cluster set as the current context in Azure Portal
+function aksportal() {
+  id=$(getakscluster | jq -r ".id")
   echo $id
+
   url="https://portal.azure.com/#resource$id/overview"
   echo "Opening $url"
 
