@@ -66,7 +66,7 @@ function aksvmssstart() {
   echo "Node Resource Group: $node_resource_group"
 
   vmss_list=$(az vmss list -g $node_resource_group | jq -r ".[].name")
-  for vmss in $vmss_list
+  echo $vmss_list | while read vmss
   do
     echo "VMSS: $vmss"
     az vmss start -g $node_resource_group -n $vmss
