@@ -2,14 +2,23 @@
 
 DOTFILES_DIR="$HOME/.dotfiles"
 MITAMAE_BIN="$HOME/bin/mitamae"
-MITAMAE_URL="https://github.com/k0kubun/mitamae/releases/download/v1.10.0/mitamae-x86_64-`uname`"
+MITAMAE_VERSION="v1.10.0"
+MITAMAE_URL_BASE="https://github.com/itamae-kitchen/mitamae/releases/download/$MITAMAE_VERSION"
 
 if [ `uname` = 'Darwin' ]; then
+  if [ `uname -m` = 'arm64' ]; then
+    MITAMAE_URL="$MITAMAE_URL_BASE/mitamae-aarch64-Darwin"
+  else
+    MITAMAE_URL="$MITAMAE_URL_BASE/mitamae-x86_64-Darwin"
+  fi
+
   # Install homebrew
   which brew > /dev/null
   if [ "$?" -ne 0 ]; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
+else
+  MITAMAE_URL="$MITAMAE_URL_BASE/mitamae-x86_64-`uname`"
 fi
 
 # Install mitamae
