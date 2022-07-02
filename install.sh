@@ -15,7 +15,7 @@ if [ `uname` = 'Darwin' ]; then
   # Install homebrew
   which brew > /dev/null
   if [ "$?" -ne 0 ]; then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 else
   MITAMAE_URL="$MITAMAE_URL_BASE/mitamae-x86_64-`uname`"
