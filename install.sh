@@ -2,7 +2,7 @@
 
 DOTFILES_DIR="$HOME/.dotfiles"
 MITAMAE_BIN="$HOME/bin/mitamae"
-MITAMAE_VERSION="v1.10.0"
+MITAMAE_VERSION="v1.12.10"
 MITAMAE_URL_BASE="https://github.com/itamae-kitchen/mitamae/releases/download/$MITAMAE_VERSION"
 
 if [ `uname` = 'Darwin' ]; then
