@@ -11,6 +11,7 @@ end
 directory "#{ENV['HOME']}/.tmux.conf.d"
 %w[
   reattach-to-user-namespace.conf
+  powerline.conf
 ].each do |file|
   link "#{ENV['HOME']}/.tmux.conf.d/#{file}" do
     to "#{ENV['HOME']}/.dotfiles/conf/tmux.conf.d/#{file}"
