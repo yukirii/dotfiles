@@ -3,13 +3,16 @@
 
 # PATH
 #=====================
-export XDG_CONFIG_HOME="$HOME/.config"
 if [ -z $TMUX ]; then
+  export XDG_CONFIG_HOME="$HOME/.config"
+
   export PATH="/usr/local/bin:/usr/bin:$PATH"
   export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-fi
 
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+  export PATH="$HOME/go/bin:$PATH"
+
+  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
 
 # LANG
 #=====================
@@ -96,6 +99,12 @@ PROMPT=$'%{\e[38;05;${PSCOLOR}m%}${USERNAME}%# %{\e[m%}'
 #PROMPT=$'%{\e[38;05;${PSCOLOR}m%}%# %{\e[m%}'
 SPROMPT=$'%{\e[${PSCOLOR}m%}%r is correct? [n,y,a,e]:%{${reset_color}%} '
 
+kubectl() {
+  unfunction "$0"
+  source <(kubectl completion zsh)
+  $0 "$@"
+}
+
 # source ~/.zshrc.d/*.zsh
 #=====================
 if [ -d $HOME/.zshrc.d ]; then
@@ -103,7 +112,3 @@ if [ -d $HOME/.zshrc.d ]; then
     source $file
   done
 fi
-
-export PATH="$HOME/go/bin:$PATH"
-
-source <(kubectl completion zsh)
