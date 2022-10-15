@@ -65,3 +65,5 @@ function _update_vcs_info_msg() {
 }
 
 add-zsh-hook precmd _update_vcs_info_msg
+
+alias gitforesta='git-foresta --all --style=10 | less -RSX'

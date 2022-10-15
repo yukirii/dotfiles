@@ -10,6 +10,7 @@ recipes:
   - monaco_for_powerline
   - iterm2-japanesque
   - vimfx
+  - git-foresta
 
 # attributes
 dotfiles:

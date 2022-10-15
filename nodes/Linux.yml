@@ -5,6 +5,7 @@ recipes:
   - peco
   - neovim
   - anyenv
+  - git-foresta
 
 # attributes
 dotfiles:
