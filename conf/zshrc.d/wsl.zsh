@@ -3,3 +3,7 @@
 if [ -z $TMUX ]; then
   export PATH="/c/Windows/System32:$PATH"
 fi
+
+function wcd() {
+  cd $(wslpath $1)
+}
