@@ -12,6 +12,8 @@ if [ -z $TMUX ]; then
   export PATH="$HOME/go/bin:$PATH"
 
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+  export GOPATH="$HOME/go"
 fi
 
 # LANG
