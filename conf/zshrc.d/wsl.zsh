@@ -7,3 +7,7 @@ fi
 function wcd() {
   cd $(wslpath $1)
 }
+
+function open() {
+  /c/Windows/explorer.exe $1
+}
