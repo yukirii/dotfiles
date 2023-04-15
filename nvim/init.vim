@@ -12,15 +12,19 @@ endif
 let g:python_host_prog = $PYENV_ROOT . '/shims/python'
 let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
-set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
-if dein#load_state('~/.vim/bundles')
-  call dein#begin('~/.vim/bundles')
+let s:dein_base = '~/.vim/bundles'
+let s:dein_src = '~/.vim/bundles/repos/github.com/Shougo/dein.vim'
+
+execute 'set runtimepath+=' . s:dein_src
+
+if dein#load_state(s:dein_base)
+  call dein#begin(s:dein_base)
 
   let g:nvim_dir  = expand('~/.config/nvim')
   let s:toml      = g:nvim_dir . '/dein.toml'
   let s:lazy_toml = g:nvim_dir . '/dein_lazy.toml'
 
-  call dein#add('~/.vim/bundles/repos/github.com/Shougo/dein.vim')
+  call dein#add(s:dein_src)
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
