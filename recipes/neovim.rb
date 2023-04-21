@@ -23,15 +23,3 @@ end
     to "#{ENV['HOME']}/.dotfiles/nvim/#{file}"
   end
 end
-
-## Shougo/dein.vim
-directory "#{ENV['HOME']}/.vim/bundles"
-
-URL = "https://raw.githubusercontent.com/Shougo/dein-installer.vim/main/installer.sh"
-execute "Install dein.vim" do
-  command <<-EOF
-    curl #{URL} -o #{ENV['HOME']}/.vim/bundles/dein-installer.sh
-    sh #{ENV['HOME']}/.vim/bundles/dein-installer.sh #{ENV['HOME']}/.vim/bundles
-  EOF
-  not_if "test -e #{ENV['HOME']}/.vim/bundles/repos/github.com/Shougo/dein.vim"
-end
