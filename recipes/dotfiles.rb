@@ -22,11 +22,11 @@ if node[:platform] == "darwin"
   end
 end
 
-# Linux - Ubuntu
-if node[:platform] == "ubuntu"
+# Linux - Ubuntu or Arch
+if node[:platform] == "ubuntu" || node[:platform] == "arch"
   # WSL
   link "#{ENV['HOME']}/.zshrc.d/wsl.zsh" do
     to "#{ENV['HOME']}/.dotfiles/conf/zshrc.d/wsl.zsh"
-    only_if "uname -r | grep -q Microsoft"
+    only_if "uname -r | grep -q -e Microsoft -e microsoft"
   end
 end

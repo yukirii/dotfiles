@@ -109,3 +109,7 @@ function bingwork() {
   echo "https://www.bing.com/work/$opt"
   cmd.exe /C start https://www.bing.com/work/$opt
 }
+
+function base36() {
+  ruby -e "p (ARGV[0].to_i).to_s(36)" $1
+}
