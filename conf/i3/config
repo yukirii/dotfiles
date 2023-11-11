@@ -21,6 +21,7 @@ font pango:monospace 8
 
 exec --no-startup-id xset r rate 200 25
 exec --no-startup-id fcitx5
+exec --no-startup-id "xcalib ~/bin/ColorLCD-E3D1189B-95FA-33A3-B678-18C6008225E8.icc"
 exec --no-startup-id "feh --bg-scale ~/Pictures/wallpaper.png"
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork
 
