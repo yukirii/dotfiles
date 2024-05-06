@@ -26,7 +26,14 @@ git "#{ENV['HOME']}/.tmux/plugins/tpm" do
 end
 
 # Install powerline-status
-execute 'Install powerline-status' do
-  command 'pip install powerline-status'
-  not_if 'pip list | grep powerline-status'
+if node[:platform] == "arch"
+  package 'powerline' do
+    user 'root'
+    action :install
+  end
+else
+  execute 'Install powerline-status' do
+    command 'pip install powerline-status'
+    not_if 'pip list | grep powerline-status'
+  end
 end
